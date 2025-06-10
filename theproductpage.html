@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="icon" href="favicon.webp" type="image/png">
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.jpg" alt="Logo">
+            </div>
+            <nav>
+                <ul class="Functions">
+                    <li><a href="thehomepage.html">Home</a></li>
+                    <li><a href="theproductpage.html">Product </a></li>
+                    <li><a href="About.html">About us</a></li>
+                    <li><a href="Contact.html">Contact</a></li> 
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Our Products</h1>
+        <div class="product-grid">
+            <div class="product" onclick="showPrice('YAESU FT-411E Walkie Talkie', 'The set being sold is made up of original elements: - 2 YAESU FT 411 E walkie talkies - 2 batteries - 2 car adapters - 2 antennas - 2 leatherette covers - 1 battery charger Everything is in perfect condition because it has had very little use and works correctly.')">
+                <div class="product-definition">YAESU FT-411E Walkie Talkie</div>
+                <img src="walkie_talkie1.webp" alt="Walkie Talkie 1">
+                <div class="product-title">Price: $200</div>
+            </div>
+            <div class="product" onclick="showPrice('VHF Aviation AM 8.33 kHz walkie-talkie Yaesu FTA-250L', 'The Yaesu FTA-250L is a transceiver for the VHF AM aviation band from 118 to 136Mhz, IPX5 and MIL-STD-810F approved for use in harsh environments with rain, splashes and projections. The new Yaesu FTA-250L aviation VHF handset is 8.33 kHz and 25 kHz compatible. An audio output of 700 mW ensures that radio calls are not lost even in noisy environments. The FTA-250 also includes a noise reduction function on reception and transmission.')">
+                <div class="product-definition">VHF Aviation AM 8.33 kHz walkie-talkie Yaesu FTA-250L</div>
+                <img src="walkie_talkie2.jpg" alt="Walkie Talkie 2">
+                <div class="product-title">Price: $300</div>
+            </div>
+            <div class="product" onclick="showPrice('Yaesu FT-70D Walkie Talkie C4FM / FM Dual-Band', 'The Yaesu FT-7D walkie-talkie offers clear communication in FM and C4FM digital modes. With automatic mode selection, numeric ID display, and 700mW audio output, it ensures convenient and loud communication. Its compact design, robust features, and long battery life make it ideal for diverse applications.')">
+                <div class="product-definition">Yaesu FT-70D Walkie Talkie C4FM / FM Dual-Band</div>
+                <img src="walkie_talkie3.jpg" alt="Walkie Talkie 3">
+                <div class="product-title">Price: $250</div>
+            </div>
+            <div class="product" onclick="showPrice('Walkie-talkie YAESU VX-110 Black Friday', 'The Yaesu VX-110 is a portable amateur radio walkie-talkie, featuring VHF open band coverage. It comes with a battery, charger box, and instruction book. With its rugged design, scanning functions, and clear LCD display, it offers reliable communication for amateur radio enthusiasts.')">
+                <div class="product-definition">Walkie-talkie YAESU VX-110 Black Friday</div>
+                <img src="walkie_talkie4.webp" alt="Walkie Talkie 4">
+                <div class="product-title">Price: $180</div>
+            </div>
+            <div class="product" onclick="showPrice('Yaesu FT-208R walkie talkie', 'The Yaesu FT-208R is a fully functional walkie-talkie in excellent condition, with clear transmission and reception. It includes a vintage Yaesu microphone, original case, and a brand new, high-capacity battery. Perfect for collectors or amateur radio enthusiasts.')">
+                <div class="product-definition">Yaesu FT-208R walkie talkie</div>
+                <img src="walkie_talkie5.webp" alt="Walkie Talkie 5">
+                <div class="product-title">Price: $150</div>
+            </div>
+        </div>
+        <div id="price-container" class="price-container"></div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 YAESU THE RADIO. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Enter Your Information</h2>
+            <form id="order-form" onsubmit="submitForm()">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea><br><br>
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        function showPrice(productName, productDescription) {
+            const priceContainer = document.getElementById('price-container');
+            priceContainer.style.display = 'block';
+            priceContainer.innerHTML = `
+                <div class="selected-product">Selected Product: ${productName}</div>
+                <div class="product-description">${productDescription}</div>
+                <button class="order-button" onclick="openModal('${productName}')">Place Order</button>
+            `;
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Open the modal with product name
+        function openModal(productName) {
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('productName').value = productName;
+        }
+
+        // Submit the form
+        function submitForm() {
+            // You can handle form submission here
+            alert('Your order has been placed. We will contact you shortly.');
+            // Close the modal
+            document.getElementById('myModal').style.display = 'none';
+            // Clear form fields
+            document.getElementById('order-form').reset();
+            return false;
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>
